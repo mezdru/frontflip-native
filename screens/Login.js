@@ -23,11 +23,20 @@ let Login = inject("authStore")( observer(class Login extends Component {
     };
 
     handlePasswordChange(password) {this.props.authStore.setPassword(password)};
+    handleOrgTagChange(orgTag) {this.props.authStore.setOrgTag(orgTag)};
     
     onLoginPress() {
         this.props.authStore.login()
             .then();
     };
+
+    onRegisterPress() {
+        this.props.authStore.register();
+    }
+
+    onRegisterOrgPress() {
+        this.props.authStore.registerToOrg();
+    }
 
     /**
      * @description Example of a secure API call.
@@ -54,11 +63,24 @@ let Login = inject("authStore")( observer(class Login extends Component {
                 <TextInput placeholder='Password' value={values.password} onChangeText={ (password) => this.handlePasswordChange(password)}/>
                 <View style={{margin:10}} />
                 <Button 
-                    onPress={() => this.onLoginPress()}
-                    title="Submit"
+                    onPress={() => this.onRegisterPress()}
+                    title="Register"
                 />
 
-                <Button style={{margin:10}} onPress={() => this.displayMyUser()} title="Display my user (check logs)"/>
+
+                <Button 
+                    onPress={() => this.onLoginPress()}
+                    title="Login"
+                />
+
+
+                <TextInput placeholder='orgTag' value={values.orgTag} onChangeText={(orgTag) => this.handleOrgTagChange(orgTag)}/>
+                <Button
+                    onPress={() => this.onRegisterOrgPress()}
+                    title="Register to organisation"
+                />
+
+                {/* <Button style={{margin:10}} onPress={() => this.displayMyUser()} title="Display my user (check logs)"/> */}
             </ScrollView>
             )
     }
