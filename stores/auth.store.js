@@ -72,6 +72,7 @@ class AuthStore {
 
     /**
      * @description Call authentification service to register an User to an Organisation
+     * @param {access_token} needed.
      */
     registerToOrg() {
         this.inProgress = true;
